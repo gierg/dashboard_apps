@@ -29,10 +29,10 @@ class User_model extends CI_Model {
 		}else{
 			$response = array('success' => 'User saved successfully !');
 			$data = array(
-				'firstName' => $datas->firstName,
-				'lastName' => $datas->lastName,
-				'email' => $datas->email,
-				'mobileNumber' => $datas->mobileNumber
+				'firstName' => $datas['firstName'],
+				'lastName' => $datas['lastName'],
+				'email' => $datas['email'],
+				'mobileNumber' => $datas['mobileNumber']
 			);
 			if(isset($datas->_id) && !isset($datas->delete)){
 				$where =array('_id' => $datas->_id);
