@@ -34,8 +34,8 @@ class User_model extends CI_Model {
 				'email' => $datas['email'],
 				'mobileNumber' => $datas['mobileNumber']
 			);
-			if(isset($datas->_id) && !isset($datas->delete)){
-				$where =array('_id' => $datas->_id);
+			if(isset($datas['_id']) && !isset($datas['delete'])){
+				$where =array('_id' => $datas['_id']);
 				$this->db->update('user_details',$data,$where);
 			}else{
 				$this->db->insert('user_details',$data);
