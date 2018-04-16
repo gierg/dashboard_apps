@@ -28,16 +28,31 @@ class V1 extends REST_Controller {
 		$this->load->model('user_model','user'); // Loading model 
 	}
 
+	/*Tampil data*/
 	public function index_get()
 	{
 		
 			$result = $this->user->get_users();
 			echo json_encode($result);
 	}
+	/*simpan*/
 	public function index_post(){
 			$datas = json_decode(file_get_contents("php://input"));
 			$query = $this->user->save_user($this->post($datas));
 			echo json_encode($query);
+	}
+
+	/*Update*/
+	public function single_put($id=null){
+		$datas=[
+				'_id' => $id,
+				'firstName' => $this->put('firstName'),
+				'lastName' => $this->put('lastName'),
+				'email' => $this->put('email'),
+				'mobileNumber' => $this->put('mobileNumber')
+				];
+		$query = $this->user->save_user($datas);
+		echo json_encode($query);
 	}
 
 }
