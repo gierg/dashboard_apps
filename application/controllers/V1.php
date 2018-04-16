@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-class V1 extends CI_Controller {
+include_once(APPPATH.'libraries/REST_Controller.php');
+class V1 extends REST_Controller {
 
 	public function __construct()
 	{
@@ -28,21 +28,16 @@ class V1 extends CI_Controller {
 		$this->load->model('user_model','user'); // Loading model 
 	}
 
-	public function users()
+	public function index_get()
 	{
 		
-		switch($_SERVER['REQUEST_METHOD']){
-			case 'GET':
 			$result = $this->user->get_users();
 			echo json_encode($result);
-			break;
-			case 'POST':
+	}
+	public function index_post(){
 			$datas = json_decode(file_get_contents("php://input"));
-			$result = $this->user->save_user($datas);
-			echo json_encode($result);
-			break;
-
-		}
+			$query = $this->user->save_user($this->post($datas));
+			echo json_encode($query);
 	}
 
 }
