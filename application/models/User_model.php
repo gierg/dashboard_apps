@@ -46,8 +46,8 @@ class User_model extends CI_Model {
 	Public function check_delete($datas)
 	{
 		$response = array('success' => 'User deleted successfully !');
-		if(isset($datas->delete) && isset($datas->_id)){
-			$where =array('_id' => $datas->_id);
+		if(isset($datas['delete']) && isset($datas['_id'])){
+			$where =array('_id' => $datas['_id']);
 			$data =array('status' => 0);
 			$this->db->update('user_details',$data,$where);
 			return $response;
