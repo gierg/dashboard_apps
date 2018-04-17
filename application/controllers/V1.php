@@ -17,7 +17,7 @@ class V1 extends REST_Controller {
 		{
 
 			if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-				header("Access-Control-Allow-Methods: GET, POST,OPTIONS");         
+				header("Access-Control-Allow-Methods: GET, POST,OPTIONS,PUT");         
 
 			if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
 				header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
@@ -53,6 +53,16 @@ class V1 extends REST_Controller {
 				'mobileNumber' => $this->put('mobileNumber')
 				];
 		$query = $this->user->save_user($datas);
+		echo json_encode($query);
+	}
+
+	/*Update*/
+	public function single_delete($id=null){
+		$datas=[
+				'_id' => $id,
+				'delete' => true
+				];
+		$query = $this->user->check_delete($datas);
 		echo json_encode($query);
 	}
 
