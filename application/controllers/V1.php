@@ -29,12 +29,13 @@ class V1 extends REST_Controller {
 	}
 
 	/*Tampil data*/
-	public function index_get()
+	public function index_get($id=null)
 	{
-		
-			$result = $this->user->get_users();
+		// $id=$this->get('id');
+			$result = $this->user->get_users($id);
 			echo json_encode($result);
 	}
+
 	/*simpan*/
 	public function index_post(){
 			$datas = json_decode(file_get_contents("php://input"));
