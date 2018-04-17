@@ -10,11 +10,11 @@ class User_model extends CI_Model {
 		
 	}
 
-	Public function get_users()
+	Public function get_users($id=null)
 	{	
 		$where  = array('status' => 1);	
-		if(isset($_GET['id'])!=''){
-			$where +=array('_id' => $_GET['id']);
+		if(isset($id)!=''){
+			$where +=array('_id' => $id);
 			return $this->db->get_where('user_details',$where)->row_array();
 		}else{
 			return $this->db->get_where('user_details',$where)->result_array();
