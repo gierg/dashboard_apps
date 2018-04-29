@@ -10,11 +10,11 @@ class User_model extends CI_Model {
 		
 	}
 
-	Public function get_users()
+	Public function get_users($id=null)
 	{	
 		$where  = array('status' => 1);	
-		if(isset($_GET['id'])!=''){
-			$where +=array('_id' => $_GET['id']);
+		if(isset($id)!=''){
+			$where +=array('_id' => $id);
 			return $this->db->get_where('user_details',$where)->row_array();
 		}else{
 			return $this->db->get_where('user_details',$where)->result_array();
@@ -29,13 +29,13 @@ class User_model extends CI_Model {
 		}else{
 			$response = array('success' => 'User saved successfully !');
 			$data = array(
-				'firstName' => $datas->firstName,
-				'lastName' => $datas->lastName,
-				'email' => $datas->email,
-				'mobileNumber' => $datas->mobileNumber
+				'firstName' => $datas['firstName'],
+				'lastName' => $datas['lastName'],
+				'email' => $datas['email'],
+				'mobileNumber' => $datas['mobileNumber']
 			);
-			if(isset($datas->_id) && !isset($datas->delete)){
-				$where =array('_id' => $datas->_id);
+			if(isset($datas['_id']) && !isset($datas['delete'])){
+				$where =array('_id' => $datas['_id']);
 				$this->db->update('user_details',$data,$where);
 			}else{
 				$this->db->insert('user_details',$data);
@@ -46,8 +46,8 @@ class User_model extends CI_Model {
 	Public function check_delete($datas)
 	{
 		$response = array('success' => 'User deleted successfully !');
-		if(isset($datas->delete) && isset($datas->_id)){
-			$where =array('_id' => $datas->_id);
+		if(isset($datas['delete']) && isset($datas['_id'])){
+			$where =array('_id' => $datas['_id']);
 			$data =array('status' => 0);
 			$this->db->update('user_details',$data,$where);
 			return $response;
