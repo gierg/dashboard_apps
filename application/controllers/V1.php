@@ -17,7 +17,7 @@ class V1 extends REST_Controller {
 		{
 
 			if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-				header("Access-Control-Allow-Methods: GET, POST,OPTIONS,PUT");         
+				header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT");         
 
 			if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
 				header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
@@ -39,6 +39,7 @@ class V1 extends REST_Controller {
 	/*simpan*/
 	public function index_post(){
 			$datas = json_decode(file_get_contents("php://input"));
+			echo json_encode($datas);
 			$query = $this->user->save_user($this->post($datas));
 			echo json_encode($query);
 	}

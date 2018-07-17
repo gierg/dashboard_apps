@@ -23,7 +23,7 @@ class User_model extends CI_Model {
 	}
 	Public function save_user($datas)
 	{
-		$result = $this->check_delete($datas);	
+		$result = $this->check_delete($datas);
 		if(isset($result)){	
 			exit;
 		}else{
