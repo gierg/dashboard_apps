@@ -1,15 +1,15 @@
 import 'rxjs/add/operator/switchMap';
 import {Component} from '@angular/core';
-import {User} from './user';
+import {User} from './../shared/models/user';
 import {Router} from '@angular/router';
-import {UserService} from "./user.service";
+import {UserService} from './user.service';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {Location} from "@angular/common";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'add-user',
   templateUrl: './user-add.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./../app.component.css']
 })
 
 export class UserAddComponent {
@@ -34,7 +34,7 @@ export class UserAddComponent {
 
   add(): void {
 
-    let user = this.userAddForm.value as User;
+    const user = this.userAddForm.value as User;
     console.log(user);
     this.userService.add(user)
       .then(response => {

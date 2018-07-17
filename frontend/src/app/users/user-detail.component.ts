@@ -1,14 +1,14 @@
 import 'rxjs/add/operator/switchMap';
 import {Component, OnInit} from '@angular/core';
-import {User} from './user';
+import {User} from './../shared/models/user';
 import {ActivatedRoute, Params} from '@angular/router';
 import {Location} from '@angular/common';
-import {UserService} from "./user.service";
+import {UserService} from './user.service';
 
 @Component({
   selector: 'user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./../app.component.css']
 })
 
 export class UserDetailComponent implements OnInit{

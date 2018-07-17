@@ -1,15 +1,15 @@
 import 'rxjs/add/operator/switchMap';
 import {Component, OnInit} from '@angular/core';
-import {User} from './user';
+import {User} from './../shared/models/user';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {UserService} from "./user.service";
+import {UserService} from './user.service';
 import {Location} from '@angular/common';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'update-user',
   templateUrl: './user-update.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./../app.component.css']
 })
 
 export class UserUpdateComponent implements OnInit {
