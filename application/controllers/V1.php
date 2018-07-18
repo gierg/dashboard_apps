@@ -33,14 +33,14 @@ class V1 extends REST_Controller {
 	{
 		// $id=$this->get('id');
 			$result = $this->user->get_users($id);
-			echo json_encode($result);
+			$this->_setOutput($result);
 	}
 
 	/*simpan*/
 	public function index_post(){
 			$datas = json_decode(file_get_contents("php://input"));
 			$query = $this->user->save_user($this->post($datas));
-			echo json_encode($query);
+			$this->_setOutput($query);
 	}
 
 	/*Update*/
@@ -53,7 +53,7 @@ class V1 extends REST_Controller {
 				'mobileNumber' => $this->put('mobileNumber')
 				];
 		$query = $this->user->save_user($datas);
-		echo json_encode($query);
+		$this->_setOutput($query);
 	}
 
 	/*Update*/
@@ -63,7 +63,7 @@ class V1 extends REST_Controller {
 				'delete' => true
 				];
 		$query = $this->user->check_delete($datas);
-		echo json_encode($query);
+		$this->_setOutput($query);
 	}
 
 }
