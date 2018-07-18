@@ -66,7 +66,7 @@ class Portopolio extends REST_Controller {
 	}
 	
 	/*set output */
-	private function _setOutput($data){	    {
+	private function _setOutput($data){	    
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Content-type: application/json');
