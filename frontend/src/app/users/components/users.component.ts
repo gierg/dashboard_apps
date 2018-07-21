@@ -1,14 +1,13 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {UserService} from './user.service';
-import { User } from './../shared/models/user';
+import {UserService} from './../user.service';
+import { User } from './../../shared/models/user';
 import {Router} from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
-	selector: 'my-users',
+	selector: 'app-users',
 	templateUrl: './users.component.html',
-	styleUrls: ['./../app.component.css'],
-	providers: [UserService]
+	styleUrls: ['./../../app.component.css']
 })
 
 export class UsersComponent implements OnInit {

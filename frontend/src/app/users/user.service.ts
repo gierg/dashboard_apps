@@ -8,7 +8,7 @@ export class UserService {
 
 	private host = window.location.hostname;
 	private headers = new Headers({'Content-Type': 'application/json', 'api_auth_key': 'f99aecef3d12e02dcbb6260bbdd35189c89e6e73'});
-	private usersURL = `http://${this.host}/dashboard_apps/v1`;
+	private usersURL = `http://${this.host}/dashboard_apps/V1`;
 
 	constructor(private http: Http) { };
 
@@ -17,7 +17,7 @@ export class UserService {
  * @returns {Promise<User[]>}
  */
 	getUsers(): Promise<User[]> {
-		return this.http.get(this.usersURL).toPromise().then(response => {
+		return this.http.get(this.usersURL, {headers: this.headers}).toPromise().then(response => {
 			return response.json() as User[];
 		}).catch(this.handleError);
 	}
@@ -37,13 +37,13 @@ export class UserService {
    * @param user:User
    * @returns {Promise<User>}
    */
-  add(user: User): Promise<User>{
-    const header = new Headers({'Content-Type': 'multipart/form-data; boundary=something', 'api_auth_key':'f99aecef3d12e02dcbb6260bbdd35189c89e6e73'});
-    return this.http.post(`${this.usersURL}`, JSON.stringify(user), {headers: header})
-      .toPromise()
-      .then(response => response.json() as User)
-      .catch(this.handleError)
-  }
+	add(user: User): Promise<User>{
+		const header = new Headers({'Content-Type': 'multipart/form-data; boundary=something', 'api_auth_key':'f99aecef3d12e02dcbb6260bbdd35189c89e6e73'});
+		return this.http.post(`${this.usersURL}`, JSON.stringify(user), {headers: header})
+			.toPromise()
+			.then(response => response.json() as User)
+			.catch(this.handleError);
+	}
 
   /**
    * Updates user that matches to id
