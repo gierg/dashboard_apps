@@ -33,14 +33,14 @@ class Portopolio extends REST_Controller {
 	{
 		// $id=$this->get('id');
 			$result = $this->portopolio->get_portopolios($id);
-			echo json_encode($result);
+			$this->_setOutput($query);
 	}
 
 	/*simpan*/
 	public function index_post(){
 			$datas = json_decode(file_get_contents("php://input"));
 			$query = $this->portopolio->save_portopolio($this->post($datas));
-			echo json_encode($query);
+			$this->_setOutput($query);
 	}
 
 	/*Update*/
@@ -52,7 +52,7 @@ class Portopolio extends REST_Controller {
 		        'id_anggota' => $this->put('id_anggota')
 				];
 		$query = $this->portopolio->save_portopolio($datas);
-		echo json_encode($query);
+		$this->_setOutput($query);
 	}
 
 	/*Update*/
@@ -62,7 +62,16 @@ class Portopolio extends REST_Controller {
 				'delete' => true
 				];
 		$query = $this->portopolio->check_delete($datas);
-		echo json_encode($query);
+		$this->_setOutput($query);
 	}
+	
+	/*set output */
+	private function _setOutput($data){	    
+		header('Cache-Control: no-cache, must-revalidate');
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+		header('Content-type: application/json');
+
+		echo json_encode($data);
+	    }
 
 }
