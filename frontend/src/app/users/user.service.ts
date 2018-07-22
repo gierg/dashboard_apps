@@ -37,9 +37,9 @@ export class UserService {
    * @param user:User
    * @returns {Promise<User>}
    */
-	add(user: User): Promise<User>{
-		const header = new Headers({'Content-Type': 'multipart/form-data; boundary=something', 'api_auth_key':'f99aecef3d12e02dcbb6260bbdd35189c89e6e73'});
-		return this.http.post(`${this.usersURL}`, JSON.stringify(user), {headers: header})
+	add(user: User): Promise<User> {
+		const header = new Headers({'Content-Type': 'multipart/form-data; boundary=something', 'api_auth_key': 'f99aecef3d12e02dcbb6260bbdd35189c89e6e73'});
+		return this.http.post(`${this.usersURL}`, JSON.stringify(user), {headers: this.headers})
 			.toPromise()
 			.then(response => response.json() as User)
 			.catch(this.handleError);
@@ -50,33 +50,33 @@ export class UserService {
    * @param user:User
    * @returns {Promise<User>}
    */
-  update(user: User): Promise<User>{
-    return this.http.post(this.usersURL, JSON.stringify(user), {headers: this.headers})
-      .toPromise()
-      .then(response => response.json() as User)
-      .catch(this.handleError)
-  }
+	update(user: User): Promise<User>{
+		return this.http.post(this.usersURL, JSON.stringify(user), {headers: this.headers})
+			.toPromise()
+			.then(response => response.json() as User)
+			.catch(this.handleError);
+	}
 
   /**
    * Removes user
    * @param id:string
    * @returns {Promise<User>}
    */
-  remove(id: string): Promise<any>{
-    var data = JSON.stringify({_id: id,delete:1});
-    return this.http.post(this.usersURL, data, {headers: this.headers})
-      .toPromise()
-      .then(response => console.log(response))
-      .catch(this.handleError)
-  }
+	remove(id: string): Promise<any>{
+		const data = JSON.stringify({_id: id, delete: 1 });
+		return this.http.post(this.usersURL, data, {headers: this.headers})
+		.toPromise()
+		.then(response => console.log(response))
+		.catch(this.handleError);
+	}
 
   /**
    * Handles error thrown during HTTP call
    * @param error:any
    * @returns {Promise<never>}
    */
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
+	private handleError(error: any): Promise<any> {
+		console.error('An error occurred', error); // for demo purposes only
+		return Promise.reject(error.message || error);
+	}
 }

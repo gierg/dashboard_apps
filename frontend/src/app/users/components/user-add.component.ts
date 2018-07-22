@@ -33,18 +33,15 @@ export class UserAddComponent {
 	});
 }
 
-  add(): void {
+	add(): void {
+		const user = this.userAddForm.value as User;
+		this.userService.add(user).then(response => {
+			console.log('response: ', response);
+			this.router.navigate(['/users']);
+		});
+	}
 
-    const user = this.userAddForm.value as User;
-    console.log(user);
-    this.userService.add(user)
-      .then(response => {
-        console.log('response', response);
-        this.router.navigate(['/users']);
-      })
-  }
-
-  goBack(): void {
-    this.location.back();
-  }
+	goBack(): void {
+		this.location.back();
+	}
 }
