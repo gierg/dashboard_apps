@@ -1,10 +1,10 @@
-import 'rxjs/add/operator/switchMap';
-import {Component, OnInit} from '@angular/core';
-import {User} from './../../shared/models/user';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {UserService} from './../user.service';
-import {Location} from '@angular/common';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { switchMap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { User } from './../../shared/models/user';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { UserService } from './../user.service';
+import { Location } from '@angular/common';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-update-user',
@@ -26,11 +26,11 @@ export class UserUpdateComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.route.params
-			.switchMap((params: Params) => this.userService.getUser(params['id']))
+			.pipe(switchMap((params: Params) => this.userService.getUser(params['id'])))
 			.subscribe(user => {
-			this.user = user;
-			this.buildForm();
-		});
+				this.user = user;
+				this.buildForm();
+			});
 	}
 
 	buildForm(): void {
@@ -43,15 +43,15 @@ export class UserUpdateComponent implements OnInit {
 		});
 	}
 
-  update(): void {
-    let user = this.userUpdateForm.value as User;
-    this.userService.update(user)
-      .then(() => {
-        this.router.navigate(['/users']);
-      })
-  }
+	update(): void {
+		const user = this.userUpdateForm.value as User;
+		this.userService.update(user)
+			.then(() => {
+				this.router.navigate(['/users']);
+			});
+	}
 
-  goBack(): void {
-    this.location.back();
-  }
+	goBack(): void {
+		this.location.back();
+	}
 }

@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UsersComponent } from './components/users.component';
 import { UserAddComponent } from './components/user-add.component';
+import { UserDetailComponent } from './components/user-detail.component';
+import { UserUpdateComponent } from './components/user-update.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: '/users/list', pathMatch: 'full' },
@@ -10,7 +12,9 @@ const routes: Routes = [
 		path: 'list',
 		children: [
 			{ path: '', component: UsersComponent },
-			{ path: 'add', component: UserAddComponent }
+			{ path: 'add', component: UserAddComponent },
+			{ path: 'detail/:id', component: UserDetailComponent },
+			{ path: 'update/:id', component: UserUpdateComponent }
 		]
 	},
 ];

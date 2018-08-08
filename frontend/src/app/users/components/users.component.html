@@ -31,10 +31,12 @@
       <td>{{user.email}}</td>
       <td>{{user.mobileNumber}}</td>
       <td class="text-center">
-        <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-primary btn-block" (click)="viewDetail(user._id)"><i class="fa fa-eye" aria-hidden="true"></i></button>
+        <!-- <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-primary btn-block" (click)="viewDetail(user._id)"><i class="fa fa-eye" aria-hidden="true"></i></button> -->
+        <button type="button" data-toggle="tooltip" data-placement="top" class="btn btn-primary btn-block" routerLink="./detail/{{ user._id}}"><i class="fa fa-eye" aria-hidden="true"></i></button>
       </td>
       <td class="text-center">
-        <button type="button" class="btn btn-block btn-primary" (click)="update(user._id)"><i class="fa fa-edit" aria-hidden="true"></i></button>
+        <!-- <button type="button" class="btn btn-block btn-primary" (click)="update(user._id)"><i class="fa fa-edit" aria-hidden="true"></i></button> -->
+        <button type="button" class="btn btn-block btn-primary" routerLink="./update/{{ user._id}}"><i class="fa fa-edit" aria-hidden="true"></i></button>
       </td>
       <td class="text-center">
         <button type="button" (click)="remove(user._id)" class="btn btn-danger btn-block"><i class="fa fa-close" aria-hidden="true"></i></button>

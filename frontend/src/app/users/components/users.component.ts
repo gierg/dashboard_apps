@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
 	}
 
 	update(id: string): void {
-		this.router.navigate(['/update', id]);
+		this.router.navigate(['./update', id]);
 	}
 
 	remove(id: string): void {
@@ -40,6 +40,6 @@ export class UsersComponent implements OnInit {
 	}
 
 	viewDetail(id: string): void {
-		this.router.navigate(['/detail', id]);
+		this.router.navigate(['./detail', id]);
 	}
 }
